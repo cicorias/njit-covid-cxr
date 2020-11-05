@@ -18,6 +18,7 @@ dill = "^0.3.3"
 pydicom = "^2.1.0"
 imbalanced-learn = "^0.7.0"
 lime = "^0.2.0"
+PyYAML = "^5.3.1"
 
 [tool.poetry.dev-dependencies]
 
