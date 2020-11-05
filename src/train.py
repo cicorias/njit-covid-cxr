@@ -338,6 +338,16 @@ def train_experiment(cfg=None, experiment='single_train', save_weights=True, wri
     if cfg is None:
         cfg = yaml.full_load(open(os.getcwd() + "/config.yml", 'r'))
 
+    # HACK: TODO: 
+    import tensorflow as tf
+    gpus = tf.config.experimental.list_physical_devices('GPU')
+    if gpus:
+        try:
+            for gpu in gpus:
+                tf.config.experimental.set_memory_growth(gpu, True)
+        except RuntimeError as e:
+            print(e)
+
     # Set logs directory
     cur_date = datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
     log_dir = cfg['PATHS']['LOGS'] + "training\\" + cur_date if write_logs else None
@@ -376,5 +386,6 @@ def train_experiment(cfg=None, experiment='single_train', save_weights=True, wri
 
 
 if __name__ == '__main__':
+    # config.gpu_options.allow_growth = True
     cfg = yaml.full_load(open(os.getcwd() + "/config.yml", 'r'))
     train_experiment(cfg=cfg, experiment=cfg['TRAIN']['EXPERIMENT_TYPE'], save_weights=True, write_logs=True)

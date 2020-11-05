@@ -1,8 +1,8 @@
 PATHS:
-  RAW_DATA: 'D:/Documents/Work/covid-cxr/data/'                                       # Path containing all 3 raw datasets (Mila, Figure 1, RSNA)
-  MILA_DATA: 'D:/Documents/Work/covid-cxr/data/covid-chestxray-dataset/'              # Path of Mila dataset https://github.com/ieee8023/covid-chestxray-dataset
-  FIGURE1_DATA: 'D:/Documents/Work/covid-cxr/data/Figure1-COVID-chestxray-dataset/'   # Path of Figure 1 dataset https://github.com/agchung/Figure1-COVID-chestxray-dataset
-  RSNA_DATA: 'D:/Documents/Work/covid-cxr/data/rsna/'                                 # Path of RSNA dataset https://www.kaggle.com/c/rsna-pneumonia-detection-challenge
+  RAW_DATA: 'E:/g/njit/deep-learn/cnn/RAW_DATA/'                                       # Path containing all 3 raw datasets (Mila, Figure 1, RSNA)
+  MILA_DATA: 'E:/g/njit/deep-learn/cnn/RAW_DATA/covid-chestxray-dataset/'              # Path of Mila dataset https://github.com/ieee8023/covid-chestxray-dataset
+  FIGURE1_DATA: 'E:/g/njit/deep-learn/cnn/RAW_DATA/Figure1-COVID-chestxray-dataset/'   # Path of Figure 1 dataset https://github.com/agchung/Figure1-COVID-chestxray-dataset
+  RSNA_DATA: 'E:/g/njit/deep-learn/cnn/RAW_DATA/rsna/'                                 # Path of RSNA dataset https://www.kaggle.com/c/rsna-pneumonia-detection-challenge
   PROCESSED_DATA: 'data/processed/'
   TRAIN_SET: 'data/processed/train_set.csv'
   VAL_SET: 'data/processed/val_set.csv'
@@ -11,6 +11,7 @@ PATHS:
   LOGS: 'results\\logs\\'
   MODEL_WEIGHTS: 'results/models/'
   MODEL_TO_LOAD: 'results/models/model.h5'
+  # MODEL_TO_LOAD: 'results/models/model20201105-101551.h5'
   LIME_EXPLAINER: './data/interpretability/lime_explainer.pkl'
   OUTPUT_CLASS_INDICES: './data/interpretability/output_class_indices.pkl'
   BATCH_PRED_IMGS: 'data/processed/test/'
@@ -33,6 +34,7 @@ TRAIN:
   EXPERIMENT_TYPE: 'single_train'                         # One of {'single_train', 'multi_train', 'hparam_search'}
   BATCH_SIZE: 32
   EPOCHS: 200
+  # EPOCHS: 10
   THRESHOLDS: 0.5                                         # Can be changed to list of values in range [0, 1]
   PATIENCE: 7
   IMB_STRATEGY: 'class_weight'                            # One of {'class_weight', 'random_oversample'}
@@ -72,6 +74,7 @@ LIME:
   NUM_FEATURES: 1000
   NUM_SAMPLES: 1000
   COVID_ONLY: false
+  # COVID_ONLY: true
 
 HP_SEARCH:
   METRICS: ['accuracy', 'loss', 'recall', 'precision', 'auc']
