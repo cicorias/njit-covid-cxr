@@ -11,10 +11,10 @@ PATHS:
   LOGS: 'results\\logs\\'
   MODEL_WEIGHTS: 'results/models/'
   # MODEL_TO_LOAD: 'results/models/model.h5'
-  MODEL_TO_LOAD: 'results\models\model20201105-133740.h5'
+  MODEL_TO_LOAD: 'results\models\model20201106-093216.h5'
   LIME_EXPLAINER: './data/interpretability/lime_explainer.pkl'
   OUTPUT_CLASS_INDICES: './data/interpretability/output_class_indices.pkl'
-  BATCH_PRED_IMGS: 'data/processed/test/'
+  BATCH_PRED_IMGS: 'E:/g/njit/deep-learn/cnn/RAW_DATA/Figure1-COVID-chestxray-dataset/images/'
   BATCH_PREDS: 'results/predictions/'
 
 DATA:
