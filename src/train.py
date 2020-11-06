@@ -141,6 +141,7 @@ def train_model(cfg, data, callbacks, verbose=1):
                                   verbose=verbose, class_weight=class_weight)
 
     # Run the model on the test set and print the resulting performance metrics.
+    print(' *** evaluation on test set *** ')
     test_results = model.evaluate_generator(test_generator, verbose=1)
     test_metrics = {}
     test_summary_str = [['**Metric**', '**Value**']]
@@ -177,7 +178,7 @@ def multi_train(cfg, data, callbacks, base_log_dir):
             cur_callbacks.append(TensorBoard(log_dir=log_dir, histogram_freq=1))
 
         # Train the model and evaluate performance on test set
-        new_model, test_metrics, test_generator = train_model(cfg, data, cur_callbacks, verbose=1)
+        new_model, test_metrics, test_generator = train_model(cfg, data, cur_callbacks, verbose=cfg['TRAIN']['VERBOSE'])
 
         # Log test set results and images
         if base_log_dir is not None:
