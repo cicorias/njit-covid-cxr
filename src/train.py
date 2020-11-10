@@ -31,7 +31,7 @@ def get_class_weights(histogram, class_multiplier=None):
         weights[i] = (1.0 / len(histogram)) * sum(histogram) / histogram[i]
     class_weight = {i: weights[i] for i in range(len(histogram))}
     if class_multiplier is not None:
-        class_weight = [class_weight[i] * class_multiplier[i] for i in range(len(histogram))]
+         class_weight = {i: class_weight[i] * class_multiplier[i] for i in range(len(histogram))}  # YTODO: PaulA
     print("Class weights: ", class_weight)
     return class_weight
 
@@ -105,7 +105,7 @@ def train_model(cfg, data, callbacks, verbose=1):
     # Define metrics.
     covid_class_idx = test_generator.class_indices['COVID-19']   # Get index of COVID-19 class
     thresholds = 1.0 / len(cfg['DATA']['CLASSES'])      # Binary classification threshold for a class
-    metrics = ['accuracy', CategoricalAccuracy(name='accuracy'),
+    metrics = [CategoricalAccuracy(name='accuracy'), # TODO: Paul
                Precision(name='precision', thresholds=thresholds, class_id=covid_class_idx),
                Recall(name='recall', thresholds=thresholds, class_id=covid_class_idx),
                AUC(name='auc'),
