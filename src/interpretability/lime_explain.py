@@ -105,6 +105,16 @@ def explain_xray(lime_dict, idx, save_exp=True):
 
 
 if __name__ == '__main__':
+    # HACK: TODO: 
+    import tensorflow as tf
+    gpus = tf.config.experimental.list_physical_devices('GPU')
+    if gpus:
+        try:
+            for gpu in gpus:
+                tf.config.experimental.set_memory_growth(gpu, True)
+        except RuntimeError as e:
+            print(e)
+    
     lime_dict = setup_lime()
     i = 0                                                       # Select i'th image in test set
     explain_xray(lime_dict, i, save_exp=True)                   # Generate explanation for image

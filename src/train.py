@@ -31,7 +31,7 @@ def get_class_weights(histogram, class_multiplier=None):
         weights[i] = (1.0 / len(histogram)) * sum(histogram) / histogram[i]
     class_weight = {i: weights[i] for i in range(len(histogram))}
     if class_multiplier is not None:
-        class_weight = [class_weight[i] * class_multiplier[i] for i in range(len(histogram))]
+         class_weight = {i: class_weight[i] * class_multiplier[i] for i in range(len(histogram))}  # YTODO: PaulA
     print("Class weights: ", class_weight)
     return class_weight
 
@@ -105,7 +105,7 @@ def train_model(cfg, data, callbacks, verbose=1):
     # Define metrics.
     covid_class_idx = test_generator.class_indices['COVID-19']   # Get index of COVID-19 class
     thresholds = 1.0 / len(cfg['DATA']['CLASSES'])      # Binary classification threshold for a class
-    metrics = ['accuracy', CategoricalAccuracy(name='accuracy'),
+    metrics = [CategoricalAccuracy(name='accuracy'), # TODO: Paul
                Precision(name='precision', thresholds=thresholds, class_id=covid_class_idx),
                Recall(name='recall', thresholds=thresholds, class_id=covid_class_idx),
                AUC(name='auc'),
@@ -141,6 +141,7 @@ def train_model(cfg, data, callbacks, verbose=1):
                                   verbose=verbose, class_weight=class_weight)
 
     # Run the model on the test set and print the resulting performance metrics.
+    print(' *** evaluation on test set *** ')
     test_results = model.evaluate_generator(test_generator, verbose=1)
     test_metrics = {}
     test_summary_str = [['**Metric**', '**Value**']]
@@ -177,7 +178,7 @@ def multi_train(cfg, data, callbacks, base_log_dir):
             cur_callbacks.append(TensorBoard(log_dir=log_dir, histogram_freq=1))
 
         # Train the model and evaluate performance on test set
-        new_model, test_metrics, test_generator = train_model(cfg, data, cur_callbacks, verbose=1)
+        new_model, test_metrics, test_generator = train_model(cfg, data, cur_callbacks, verbose=cfg['TRAIN']['VERBOSE'])
 
         # Log test set results and images
         if base_log_dir is not None:
@@ -338,6 +339,16 @@ def train_experiment(cfg=None, experiment='single_train', save_weights=True, wri
     if cfg is None:
         cfg = yaml.full_load(open(os.getcwd() + "/config.yml", 'r'))
 
+    # HACK: TODO: 
+    import tensorflow as tf
+    gpus = tf.config.experimental.list_physical_devices('GPU')
+    if gpus:
+        try:
+            for gpu in gpus:
+                tf.config.experimental.set_memory_growth(gpu, True)
+        except RuntimeError as e:
+            print(e)
+
     # Set logs directory
     cur_date = datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
     log_dir = cfg['PATHS']['LOGS'] + "training\\" + cur_date if write_logs else None
@@ -376,5 +387,6 @@ def train_experiment(cfg=None, experiment='single_train', save_weights=True, wri
 
 
 if __name__ == '__main__':
+    # config.gpu_options.allow_growth = True
     cfg = yaml.full_load(open(os.getcwd() + "/config.yml", 'r'))
     train_experiment(cfg=cfg, experiment=cfg['TRAIN']['EXPERIMENT_TYPE'], save_weights=True, write_logs=True)
