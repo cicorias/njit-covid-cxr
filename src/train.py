@@ -16,7 +16,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorboard.plugins.hparams import api as hp
 from src.models.models import *
 from src.visualization.visualize import *
-from src.custom.metrics import F1Score
+# from src.custom.metrics import F1Score
 from src.data.preprocess import remove_text
 
 def get_class_weights(histogram, class_multiplier=None):
@@ -108,8 +108,8 @@ def train_model(cfg, data, callbacks, verbose=1):
     metrics = [CategoricalAccuracy(name='accuracy'), # TODO: Paul
                Precision(name='precision', thresholds=thresholds, class_id=covid_class_idx),
                Recall(name='recall', thresholds=thresholds, class_id=covid_class_idx),
-               AUC(name='auc'),
-               F1Score(name='f1score', thresholds=thresholds, class_id=covid_class_idx)]
+               AUC(name='auc')] #,
+               #F1Score(name='f1score', thresholds=thresholds, class_id=covid_class_idx)]
 
     # Define the model.
     print('Training distribution: ', ['Class ' + list(test_generator.class_indices.keys())[i] + ': ' + str(histogram[i]) + '. '
@@ -389,4 +389,11 @@ def train_experiment(cfg=None, experiment='single_train', save_weights=True, wri
 if __name__ == '__main__':
     # config.gpu_options.allow_growth = True
     cfg = yaml.full_load(open(os.getcwd() + "/config.yml", 'r'))
+
+    # HACK TODO Remove  results\models\model20201115-123712.h5
+    # HACK https://github.com/tensorflow/tensorflow/issues/33646#issuecomment-566433261 
+#    from tensorflow.keras.models import load_model
+#    custom_objects={'F1Score':F1Score()}
+#    model_temp = load_model(cfg['PATHS']['MODEL_WEIGHTS'] + 'model20201115-123712.h5', custom_objects=custom_objects, compile=False)
+
     train_experiment(cfg=cfg, experiment=cfg['TRAIN']['EXPERIMENT_TYPE'], save_weights=True, write_logs=True)
