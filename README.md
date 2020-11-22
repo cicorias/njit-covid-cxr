@@ -1,9 +1,18 @@
 # Explainable COVID-19 Pneumonia Project CS677 Fall 2020
 
+This repo is the first part of the project that is provided in two repos:
+
+1. https://github.com/cicorias/njit-covid-cxr - this is a duplication of the original work to create a trained model -- that model is used in the following project
+2. https://github.com/cicorias/njit-deeplearn-explain-shap - this is the second part of the project and provides the SHAP visualizations and the project writeup.
+
 ## Authors
-David Apolinar	Da468@njit.edu
-Shawn Cicoria	sc2443@njit.edu
-Ted Moore	tm437@njit.edu
+
+|name|email|
+|-|-|
+|David Apolinar|Da468 AT njit DOT edu|
+|Shawn Cicoria|sc2443 AT njit DOT edu|
+Ted Moore|tm437 AT njit DOT edu|
+
 
 
 # Source
@@ -77,6 +86,13 @@ These steps are the high level steps that are in more detail articulated in the 
 # Preserve and save the model file
 As explained above, you need to copy or use the fill lpath to the file for the SHAP steps in the next part of this project.  Again, the model file is in 
 _results/models/_.
+
+# Second part
+The second part of the project is located in the GitHub repo: https://github.com/cicorias/njit-deeplearn-explain-shap
+
+For that part, the README has the full project write-up, in addition the Jypyter notebook has the experiments along with the ability to download a pre-trained model with weights in order to visualize the SHAP results in the Notebook.
+
+- Notebook: https://github.com/cicorias/njit-deeplearn-explain-shap/blob/master/shap-final-run.ipynb
 
 
 ## File Differences:
