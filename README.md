@@ -4,9 +4,9 @@
 
 # Project Parts
 ## Part 1
-This part of the project is contained in the report - https://github.com/cicorias/njit-covid-cxr.
+This part of the project is contained in the GitHub repo - https://github.com/cicorias/njit-covid-cxr.
 
-The reproduction of the results emitted primaryly a Trained Tensorflow model and for the LIME steps a batch run of the predictions using the LIME implementation.
+Part 1 of the project and reproduction of the results emitted primaryly a Trained Tensorflow model and for the LIME steps a batch run of the predictions using the LIME implementation. The model is too large to persist within a GitHub repo and git-lfs triggered a payment wall for usage.
 
 1. Trained model - https://scicoria.blob.core.windows.net/public/model20201115-151427-random-imbalance-NO-fiscore-resnet50v2.h5
 2. LIME batch predictions from model: https://github.com/cicorias/njit-covid-cxr/tree/master/results/predictions/20201106-135747
@@ -15,16 +15,13 @@ The reproduction of the results emitted primaryly a Trained Tensorflow model and
 The model file was over 250 Megabytes and not appropriate for standard git commit and limited git-lfs support was requiring payment - so, the model is present in Azure Cloud Storage.
 
 ## Part 2
-1. The summary of the SHAP approach is here: https://github.com/cicorias/njit-deeplearn-explain-shap/blob/master/README.md#summary-of-shap-approach-1
+1. The summary of the SHAP approach is here: https://github.com/cicorias/njit-deeplearn-explain-shap/blob/master/README.md#shapley-value-overview 
 
 ## Part 3
-
-1. The application of the SHAP framework and packages - top level repo and discussion are:
-   a. Explanation on the Covid Dataset - https://github.com/cicorias/njit-deeplearn-explain-shap#using-the-shap-method-on-the-covid-data-set
-   b. Jupyter notebook - https://github.com/cicorias/njit-deeplearn-explain-shap/blob/master/shap-final-run.ipynb 
-   c. Top Level Repo (containing a + b) https://github.com/cicorias/njit-deeplearn-explain-shap#initial-lime-implementation-reproduction-of-results
-
-
+The application of the SHAP framework and packages - top level repo and discussion are:
+* SHAP explanation on the Covid Dataset - https://github.com/cicorias/njit-deeplearn-explain-shap#using-the-shap-method-on-the-covid-data-set
+* SHAP approach Jupyter notebook - https://github.com/cicorias/njit-deeplearn-explain-shap/blob/master/shap-final-run.ipynb 
+* Top Level Repo (containing a + b) https://github.com/cicorias/njit-deeplearn-explain-shap
 
 # This repo is the first part of the project that is provided in two repos
 
@@ -41,7 +38,7 @@ The model file was over 250 Megabytes and not appropriate for standard git commi
 Ted Moore|tm437 AT njit DOT edu|
 
 
-
+# Part 1
 # Source
 This repo is nearly identical to the repo at https://github.com/aildnont/covid-cxr.
 
