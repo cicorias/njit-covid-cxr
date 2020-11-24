@@ -1,7 +1,34 @@
 # Explainable COVID-19 Pneumonia Project CS677 Fall 2020
 
-This repo is the first part of the project that is provided in two repos:
+> The project contents are present in two different GitHub repos -- see [Github Repos](#github-repos)
 
+# Project Parts
+## Part 1
+This part of the project is contained in the report - https://github.com/cicorias/njit-covid-cxr.
+
+The reproduction of the results emitted primaryly a Trained Tensorflow model and for the LIME steps a batch run of the predictions using the LIME implementation.
+
+1. Trained model - https://scicoria.blob.core.windows.net/public/model20201115-151427-random-imbalance-NO-fiscore-resnet50v2.h5
+2. LIME batch predictions from model: https://github.com/cicorias/njit-covid-cxr/tree/master/results/predictions/20201106-135747
+3. The review of the LIME results are here: https://github.com/cicorias/njit-deeplearn-explain-shap#initial-lime-implementation-reproduction-of-results
+
+The model file was over 250 Megabytes and not appropriate for standard git commit and limited git-lfs support was requiring payment - so, the model is present in Azure Cloud Storage.
+
+## Part 2
+1. The summary of the SHAP approach is here: https://github.com/cicorias/njit-deeplearn-explain-shap/blob/master/README.md#summary-of-shap-approach-1
+
+## Part 3
+
+1. The application of the SHAP framework and packages - top level repo and discussion are:
+   a. Explanation on the Covid Dataset - https://github.com/cicorias/njit-deeplearn-explain-shap#using-the-shap-method-on-the-covid-data-set
+   b. Jupyter notebook - https://github.com/cicorias/njit-deeplearn-explain-shap/blob/master/shap-final-run.ipynb 
+   c. Top Level Repo (containing a + b) https://github.com/cicorias/njit-deeplearn-explain-shap#initial-lime-implementation-reproduction-of-results
+
+
+
+# This repo is the first part of the project that is provided in two repos
+
+### Github Repos
 1. https://github.com/cicorias/njit-covid-cxr - this is a duplication of the original work to create a trained model -- that model is used in the following project
 2. https://github.com/cicorias/njit-deeplearn-explain-shap - this is the second part of the project and provides the SHAP visualizations and the project writeup.
 
